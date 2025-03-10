@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policie ČR - Oficiální web</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        #mapid {
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .news-item {
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
+        }
+        .news-item:hover {
+            transform: scale(1.02);
+            background-color: #e3f2fd;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1e40af;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #1e3a8a;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navigácia -->
+    <nav class="bg-blue-800 text-white p-4 flex justify-between">
+        <div class="text-xl font-bold">Policie ČR</div>
+        <ul class="flex gap-4">
+            <li><a href="#map" class="hover:underline">Mapa</a></li>
+            <li><a href="#form" class="hover:underline">Oznámení</a></li>
+            <li><a href="#news" class="hover:underline">Novinky</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Mapa -->
+    <section id="map" class="p-6">
+        <h2 class="text-2xl font-bold mb-4">Mapa</h2>
+        <div id="mapid"></div>
+    </section>
+    
+    <!-- Formulár -->
+    <section id="form" class="p-6">
+        <h2 class="text-2xl font-bold mb-4">Podání oznámení</h2>
+        <form class="form-container">
+            <label class="block mb-2">Jméno:</label>
+            <input type="text" class="border p-2 w-full mb-4" required>
+            <label class="block mb-2">Popis události:</label>
+            <textarea class="border p-2 w-full mb-4" required></textarea>
+            <button class="btn w-full">Odeslat</button>
+        </form>
+    </section>
+    
+    <!-- Novinky -->
+    <section id="news" class="p-6">
+        <h2 class="text-2xl font-bold mb-4">Novinky</h2>
+        <ul class="space-y-2">
+            <li class="news-item bg-white p-4 rounded shadow" data-aos="fade-up">Novinka 1</li>
+            <li class="news-item bg-white p-4 rounded shadow" data-aos="fade-up">Novinka 2</li>
+            <li class="news-item bg-white p-4 rounded shadow" data-aos="fade-up">Novinka 3</li>
+        </ul>
+    </section>
+    
+    <script>
+        // Inicializácia mapy
+        var map = L.map('mapid').setView([50.0755, 14.4378], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        
+        // Inicializácia animácií
+        AOS.init();
+    </script>
+</body>
+</html>
